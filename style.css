@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+header
+{
+    background-color: #24252A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 2%;
+    color: white;
+}
+
+button
+{
+    padding: 9px 25px;
+    background-color: rgba(135, 135, 250, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+}
+button:hover
+{
+    background-color: rgba(135, 135, 250, 0.8);
+}
+
+.banner-img
+{
+    background-image: url();
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    filter: blur(2px);
+}
+
+section
+{
+    padding: 2%;
+    width: 100%;
+    margin: 10px auto;
+}
+
+section ul
+{
+    display: flex;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+section ul li
+{
+    list-style: none;
+    background: #eee;
+    padding: 8px 20px;
+    margin: 5px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+section ul li.active
+{
+    background: #03a9f4;
+    color: #fff;
+}
+
+.product
+{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product .itemBox
+{
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px;
+    justify-content: center;
+    text-align: center;
+    overflow-y: hidden;
+    background-color: rgb(39, 61, 71);
+    color: white;
+}
+
+.product .itemBox .image
+{
+    height: 350px;
+    width: 255px;
+}
+
+.price
+{
+    height: 5%;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: .2rem;
+    color: white;
+}
+
+.product .itemBox.hide 
+{
+    display: none;
+}
+
+.product .itemBox img
+{
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+}

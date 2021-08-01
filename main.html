@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Kata-Log</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>Kata-Log</h1>
+            <a class="cta" href="#"><button onclick="window.location.href = 'https://discord.gg/b5RwPERb';">Discord</button></a>
+        </header>
+        
+        <div class="banner-img"></div>
+        
+        <section>
+            <ul>
+                <li class="list active" data-filter="all">All</li>
+                <li class="list" data-filter="stuff">Stuff</li>
+                <li class="list" data-filter="ressources">Ressources</li>
+                <li class="list" data-filter="sublimations">Sublimations</li>
+            </ul>
+
+            <div class="product">
+
+            </div>
+        </section>
+
+        <script src="papaparse.js"></script>
+
+        <script>
+            var url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZPI1-N20IVMnwBvouojnd1_ZQXNhRxnwhtFg5CGyIy3KK-YCRA-hPdSjCBsfnvqNGYzzYD69g8PzA/pub?output=csv"
+            var table = document.querySelector(".product");
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() 
+            {
+                if (xhr.readyState == 4 && xhr.status == 200) 
+                {
+                    var data = Papa.parse(xhr.responseText);
+                    var contents = data.data;
+
+                    for (var i = 1; i < contents.length; i++)
+                    {
+                        var row = '<div class="itemBox" data-item="'+ contents[i][5] +'"><p class="quantité">'+ contents[i][2] +'</p><img class="image" src="'+ contents[i][4] +'"><p class="price">'+ contents[i][3] +' K</p></div>';
+
+                        table.innerHTML += row;
+                        console.log("1");
+                    }
+                }
+            };
+
+            xhr.open("GET", "https://cors-anywhere.herokuapp.com/" + url, true);
+            xhr.send();
+        </script>
+
+        <script>
+            let list = document.querySelectorAll('.list');
+            let itemBox = document.querySelectorAll('.itemBox');
+
+            for (let i = 0; i < list.length; i++) {
+                list[i].addEventListener('click', function() {
+                    list = document.querySelectorAll('.list');
+                    itemBox = document.querySelectorAll('.itemBox');
+                    console.log("2");
+                    console.log(itemBox.length);
+                    for(let j = 0; j < list.length; j++) {
+                        list[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+
+                    let dataFilter = this.getAttribute('data-filter');
+
+                    for (let k = 0; k < itemBox.length; k++) {
+                        itemBox[k].classList.remove('active');
+                        itemBox[k].classList.add('hide');
+
+                        if (itemBox[k].getAttribute('data-item') == dataFilter || dataFilter == "all") {
+                            itemBox[k].classList.remove('hide');
+                            itemBox[k].classList.add('active');
+                        }
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>
